@@ -324,11 +324,11 @@
   },
   "servers": [
     {
-      "description": "Developer",
-      "url": "https://localhost:5001/api-docs"
+      "description": "Dev",
+      "url": "http://localhost:5001"
     },
     {
-      "url": "https://fake-posts-api.vercel.app/api-docs/",
+      "url": "https://fake-posts-api.vercel.app",
       "description": "Prod"
     }
   ]

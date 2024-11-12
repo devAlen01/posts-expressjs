@@ -8,9 +8,9 @@ import { fileURLToPath } from "url";
 
 const prisma = new PrismaClient();
 const app = express();
-app.use(express.json());
 const PORT = process.env.PORT || 5001;
 
+app.use(express.json());
 app.use(cors());
 
 // Получаем путь к текущему файлу и директории
@@ -21,7 +21,13 @@ const __dirname = path.dirname(__filename);
 const swaggerDocumentation = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "swagger.json"), "utf8")
 );
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocumentation));
+
+app.use(
+  "/swagger-ui",
+  express.static(path.join(__dirname, "node_modules", "swagger-ui-dist"))
+);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -328,7 +328,7 @@
       "url": "https://localhost:5001/api-docs"
     },
     {
-      "url": "https://fake-posts-api.vercel.app/",
+      "url": "https://fake-posts-api.vercel.app/api-docs",
       "description": "Prod"
     }
   ]

@@ -1,14 +1,12 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "./swagger.json";
+import swaggerDocumentation from "../swagger.json" assert { type: "json" };
 
 const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 5001;
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -17,6 +15,7 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Сервер работает" });
 });
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocumentation));
 
 app.get("/all-posts", async (req, res) => {
   const allPost = await prisma.post.findMany();
